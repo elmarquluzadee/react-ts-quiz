@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,15 +13,87 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.quiz-container {
+
+  width: 800px;
+  height: 400px;
+  background-color: #19376D;
+  border-radius: 20px;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.quiz-question-item {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.quiz-text-item {
+  width: 700px;
+  height: auto;
+
+  border-radius: 10px;
+}
+
+.options-item {
+  margin-top: 10px;
+  width: 100%;
+  height: 150px;
+  background-color: #262A56;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.option-item button {
+  background-color: #4CAF50;
+  /* arka plan rengi */
+  border: none;
+  /* kenarlık yok */
+  color: white;
+  /* yazı rengi */
+  padding: 15px 32px;
+  /* içerik boşluğu */
+  text-align: center;
+  /* metin hizalama */
+  text-decoration: none;
+  /* metin altı çizgi yok */
+  display: inline-block;
+  /* satır içi blok öğesi */
+  font-size: 16px;
+  /* yazı boyutu */
+  margin: 10px;
+  /* kenar boşluğu */
+  cursor: pointer;
+  /* imleç türü */
+  border-radius: 5px;
+  /* kenar yuvarlaklığı */
+  transition-duration: 0.4s
+}
+
+.start-button-item {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #19376D;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-button {
+
+  height: 50px;
+  width: 100px;
+  background-color: #e06363;
+  border-radius: 10px;
+}
+
+.start-items {
+  text-align: center;
+}
+
+.quiz-start-logo {
+  text-align: center;
+  color: #fff;
 }
