@@ -1,7 +1,6 @@
 import axios from 'axios';
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import './App.css'
-import { count } from 'console';
 
 function App () {
 
@@ -12,25 +11,30 @@ function App () {
         question: string;
         correct_answer: string;
         incorrect_answers: string[];
-     }
-
+     } 
       type QuizResponse = {
         results: Question[];
       }
        const [questions, setQuestions] = useState<Question[]>([]);
        const [currentQuestionIndex, setCurrentQuestions] = useState<number>(0);
        const [correctAnswers, setCorrectAnswers] = useState<number>(0);
+       const [selectQuestion, setSelectQuestion] = useState<string>("");
        const [count , setCount] = useState(0);
       
+       const currentQuestion = questions[currentQuestionIndex];
       
+       
 
-const currentQuestion = questions[currentQuestionIndex];
-
-
+       const handleInputChange = (event : React.ChangeEvent<HTMLInputElement>) => 
+       { 
+             const newValue : string = event.target.value
+             setSelectQuestion(newValue);
+             console.log(selectQuestion)
+       };
 
       useEffect( () => {
          if (count) { axios 
-            .get<QuizResponse>("https://opentdb.com/api.php?amount=15&type=multiple")
+            .get<QuizResponse>(`https://opentdb.com/api.php?amount=${selectQuestion}&type=multiple`)
             .then((response) =>{
                setQuestions(response.data.results);
             })
@@ -46,36 +50,32 @@ const currentQuestion = questions[currentQuestionIndex];
        
          <div className='start-button-item'>
          <div className='start-items'>
-         <div className='quiz-start-logo'>
+         <div className='quiz-start-logo'> 
               <h1>Quiz Start</h1>
+              <br />
+              <input type="text" placeholder='quiz number' value={selectQuestion} onChange={handleInputChange}/>
          </div>
-         <div>
+         <br />
          <button className='start-button' onClick={() => setCount(count + 1)}>Start</button>
-         </div>
          </div>
         </div>
          </> 
-      
        }
-
-  
-
       if( currentQuestionIndex >= questions.length){
         
         return <div>sual bitdi...</div>
        
        }
-       
       console.log(currentQuestion);
 
       function handleAnswer (a : string)
       {
       if(a === currentQuestion.correct_answer){
-            console.log('dogru cevab')
+            
       }
       setCurrentQuestions((prev) => prev + 1);
       }
-
+    
      return (
         <div className="App">
         <header className="App-header">
@@ -99,7 +99,6 @@ const currentQuestion = questions[currentQuestionIndex];
                   </div>
                   </div>
          </div>
-              
         </header>
         </div>
      );
